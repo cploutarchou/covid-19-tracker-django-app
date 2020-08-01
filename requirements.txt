@@ -14,3 +14,8 @@ daphne
 redis
 django-redis
 channels-redis
+bootstrap4
+dpd_static_support
+dash_daq
+dash_bootstrap_components
+whitenoise
