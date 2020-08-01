@@ -131,3 +131,4 @@ CHANNEL_LAYERS = {
         },
     },
 }
+ASGI_APPLICATION = "coronavirus.routing.application"
