@@ -1,0 +1,9 @@
+dash~=1.14.0
+dash-renderer
+dash-html-components
+dash-core-components
+dash-bootstrap-components
+plotly~=4.9.0
+pandas~=1.1.0
+numpy~=1.19.1
+django
