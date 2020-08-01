@@ -35,7 +35,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'coronavirus'
+    'coronavirus',
+    'django_plotly_dash.apps.DjangoPlotlyDashConfig',
+    'channels'
 ]
 
 MIDDLEWARE = [
@@ -119,3 +121,14 @@ USE_TZ = True
 
 STATIC_ROOT = 'coronavirus'
 STATIC_URL = '/static/'
+
+X_FRAME_OPTIONS = 'SAMEORIGIN'
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            'hosts': [('127.0.0.1', 6379), ],
+        },
+    },
+}
