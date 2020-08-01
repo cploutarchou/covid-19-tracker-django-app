@@ -36,7 +36,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'coronavirus',
-    # 'django_plotly_dash.apps.DjangoPlotlyDashConfig',
     'channels',
     'bootstrap4',
     'django_plotly_dash',
@@ -58,7 +57,7 @@ ROOT_URLCONF = 'app.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'coronavirus/templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'coronavirus/templates/default')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -140,23 +139,11 @@ LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'coronavirus')
-STATIC_URL = '/static/'
+STATIC_URL = '/static/default/'
 
-# 'django_dash': django app name
+# 'coronavirus': django app name
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'coronavirus', 'static'),
-]
-
-# Static content of Plotly components that should
-# be handled by the Django staticfiles infrastructure
-
-PLOTLY_COMPONENTS = [
-    'dash_core_components',
-    'dash_html_components',
-    'dash_bootstrap_components',
-    'dash_renderer',
-    'dpd_components',
-    'dpd_static_support',
 ]
 
 # Static content of Plotly components that should
@@ -177,7 +164,6 @@ STATICFILES_FINDERS = [
 
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-
     'django_plotly_dash.finders.DashAssetFinder',
     'django_plotly_dash.finders.DashComponentFinder',
     'django_plotly_dash.finders.DashAppDirectoryFinder',
