@@ -19,7 +19,7 @@ app.css.append_css({
 })
 app.layout = html.Div(
     html.Div([
-        # Adding one extar Div
+        # Adding one extra Div
         html.Div([
             html.H1(children='Multiple Application'),
             html.H3(children='Cyprus Population over time'),
@@ -59,6 +59,3 @@ app.layout = html.Div(
         ], className='row')
     ])
 )
-
-if __name__ == '__main__':
-    app.run_server(8052, debug=False)
