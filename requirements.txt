@@ -6,4 +6,5 @@ dash-bootstrap-components
 plotly~=4.9.0
 pandas~=1.1.0
 numpy~=1.19.1
-django
+django~=3.0.8
+mysqlclient
