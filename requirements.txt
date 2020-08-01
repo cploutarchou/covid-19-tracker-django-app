@@ -8,3 +8,9 @@ pandas~=1.1.0
 numpy~=1.19.1
 django~=3.0.8
 mysqlclient
+django_plotly_dash
+channels
+daphne
+redis
+django-redis
+channels-redis
