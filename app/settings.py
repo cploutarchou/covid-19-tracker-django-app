@@ -36,8 +36,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'coronavirus',
-    'django_plotly_dash.apps.DjangoPlotlyDashConfig',
-    'channels'
+    'channels',
+    'bootstrap4',
+    'django_plotly_dash',
+    'dpd_static_support'
 ]
 
 MIDDLEWARE = [
@@ -55,7 +57,7 @@ ROOT_URLCONF = 'app.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'coronavirus/templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'coronavirus/templates/default')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -118,8 +120,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-STATIC_ROOT = 'coronavirus'
-STATIC_URL = '/static/'
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 
@@ -131,4 +131,40 @@ CHANNEL_LAYERS = {
         },
     },
 }
+# Adding ASGI Application
 ASGI_APPLICATION = "coronavirus.routing.application"
+
+# To use home.html as default home page
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'home'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'coronavirus')
+STATIC_URL = '/static/default/'
+
+# 'coronavirus': django app name
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'coronavirus', 'static'),
+]
+
+# Static content of Plotly components that should
+# be handled by the Django staticfiles infrastructure
+
+PLOTLY_COMPONENTS = [
+    'dash_core_components',
+    'dash_html_components',
+    'dash_bootstrap_components',
+    'dash_renderer',
+    'dpd_components',
+    'dpd_static_support',
+]
+
+# Staticfiles finders for locating dash app assets and related files (Dash static files)
+
+STATICFILES_FINDERS = [
+
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'django_plotly_dash.finders.DashAssetFinder',
+    'django_plotly_dash.finders.DashComponentFinder',
+    'django_plotly_dash.finders.DashAppDirectoryFinder',
+]
