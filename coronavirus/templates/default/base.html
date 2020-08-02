@@ -1,5 +1,6 @@
 <!doctype html>
 {% load static %}
+{% load plotly_dash %}
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -123,7 +124,7 @@
                 </div>
             </div>
 
-            <canvas class="my-4" id="myChart" width="900" height="380"></canvas>
+            {% plotly_app name='dash_daily_statistics' ratio=0.41%}
 
             <h2>Section title</h2>
             <div class="table-responsive">
