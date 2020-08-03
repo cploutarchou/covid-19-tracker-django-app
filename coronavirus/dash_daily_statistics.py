@@ -4,11 +4,10 @@ import dash_html_components as html
 import pandas as pd
 
 from django_plotly_dash import DjangoDash
-import dash_bootstrap_components as abc
-from datetime import datetime, timedelta
-from calendar import monthrange
+from datetime import datetime
+
 from app.config import daily_stats
-pandas_schemapandas_schema
+
 
 def format_date():
     today = datetime.today()
@@ -19,14 +18,6 @@ def format_date():
 
 
 date = format_date()
-
-schema = Schema([
-    Column('date', [DateFormatValidation(), TrailingWhitespaceValidation()]),
-    Column('daily new cases', [LeadingWhitespaceValidation(), TrailingWhitespaceValidation()]),
-    Column('daily deaths ', [InRangeValidation(0, 120)]),
-    Column('daily recovered cases', [InListValidation(['Male', 'Female', 'Other'])]),
-    Column('daily tests performed', [MatchesPatternValidation(r'\d{4}[A-Z]{4}')])
-])
 
 df = pd.read_csv(daily_stats, encoding="UTF-8")
 df = df.sort_values(by=['date'], ascending=False)

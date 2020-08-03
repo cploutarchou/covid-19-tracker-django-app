@@ -1,5 +1,5 @@
-"""app URL Configuration
 
+"""app URL Configuration
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.0/topics/http/urls/
 Examples:
@@ -13,7 +13,8 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-
+from django.contrib import admin
+from django.urls import path, include
 from coronavirus import views
 
 from django.contrib import admin
@@ -22,10 +23,19 @@ from django.urls import path, include
 
 from django.views.generic import TemplateView
 
+from django.conf import settings
+from django.conf.urls.static import static
+
+# Loading plotly Dash apps script
+import coronavirus.dash_daily_statistics
+
+from django_plotly_dash.views import add_to_session
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
     path('django_plotly_dash/', include('django_plotly_dash.urls')),
+    path('', include('django.contrib.auth.urls')),
     url('^django_plotly_dash/', include('django_plotly_dash.urls')),
     path('', TemplateView.as_view(template_name='home.html'), name='home'),
 ]
