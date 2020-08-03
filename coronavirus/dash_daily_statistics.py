@@ -1,29 +1,17 @@
-import dash
 import dash_core_components as dcc
 import dash_html_components as html
 import pandas as pd
-
 from django_plotly_dash import DjangoDash
-from datetime import datetime
-
-from app.config import daily_stats
+from app.config import daily_stats as daily
 
 
-def format_date():
-    today = datetime.today()
-    _date = datetime(today.year, today.month, 1).isoformat().split('T')[0]
-    _date = _date.split("-")
-    _date = f"{_date[2]}/{_date[1]}/{_date[0].replace('2020', '20')}"
-    return _date
+def date_parse(x):
+    return pd.datetime.strptime(x, '%d/%m/%y')
 
 
-date = format_date()
-
-df = pd.read_csv(daily_stats, encoding="UTF-8")
-df = df.sort_values(by=['date'], ascending=False)
-filtered_dates = df.loc('date' > date)
-
-# Important: Define Id for Plotly Dash integration in Django
+idx = pd.date_range('2020-08-1', periods=30, freq='D')
+df = pd.read_csv(daily, encoding="UTF-8", parse_dates=['date'], date_parser=date_parse, infer_datetime_format=True)
+df = df.loc[df['date'] >= '2020-05-20']
 app = DjangoDash('dash_daily_statistics')
 
 app.layout = html.Div([
@@ -31,12 +19,11 @@ app.layout = html.Div([
         id='bar-chart',
         figure={
             'data': [
-                {'x': filtered_dates['date'], 'y': filtered_dates['total tests'], 'type': 'bar', 'name': 'SF'}
+                {'x': df['date'], 'y': df['daily new cases'], 'type': 'bar', 'name': 'CY DAILY'}
             ],
             'layout': {
                 'title': 'Current month daily stats'
             }
         }
     )
-
 ], className='col')
