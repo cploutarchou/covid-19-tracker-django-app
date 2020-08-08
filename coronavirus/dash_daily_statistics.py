@@ -2,16 +2,34 @@ import dash_core_components as dcc
 import dash_html_components as html
 import pandas as pd
 from django_plotly_dash import DjangoDash
-from app.config import daily_stats as daily
+from app.manage_sources import get_files
+from datetime import datetime
+
+
+files = get_files()
 
 
 def date_parse(x):
-    return pd.datetime.strptime(x, '%d/%m/%y')
+    return datetime.strptime(x, '%d/%m/%y')
 
 
 idx = pd.date_range('2020-08-1', periods=30, freq='D')
-df = pd.read_csv(daily, encoding="UTF-8", parse_dates=['date'], date_parser=date_parse, infer_datetime_format=True)
-df = df.loc[df['date'] >= '2020-05-20']
+
+csv_file = None
+for file in files:
+    if "cy_covid_19_daily_stats" in file:
+        print("file found")
+        csv_file = file
+
+
+df = pd.read_csv(csv_file,
+                 encoding="UTF-8")
+
+df['date'] = df['date'].astype('datetime64[ns]')
+df['total tests'] = pd.to_numeric(df['total tests'], errors='coerce')
+# df['total tests'] = df['total tests'].astype('int64')
+# df.fillna(0)
+
 app = DjangoDash('dash_daily_statistics')
 
 app.layout = html.Div([
