@@ -67,7 +67,7 @@ fig.update_layout(
         'title': 'Dates'
     },
     yaxis={
-        'title': 'Daily New Cases'
+        'title': 'New Cases'
     }
 
 )
