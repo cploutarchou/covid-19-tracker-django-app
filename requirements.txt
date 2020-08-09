@@ -19,6 +19,3 @@ dash_daq
 dash_bootstrap_components
 whitenoise
 django_plotly_dash
-
-
-
