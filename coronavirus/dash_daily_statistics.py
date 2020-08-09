@@ -6,6 +6,9 @@ from app.manage_sources import get_files
 from datetime import datetime as d
 import plotly.graph_objs as go
 
+
+from coronavirus.models import DailyStats
+
 files = get_files()
 
 
@@ -48,6 +51,17 @@ daily_cases_df = df[[
     'day',
     'year'
 ]]
+
+for index, row in df.iterrows():
+    res = DailyStats(
+        date=f"{row['year']}-{row['month']}-{row['day']}",
+
+    )
+    if res:
+        continue
+
+
+
 
 today = d.today()
 current_date = d(today.year, today.month, 1)
