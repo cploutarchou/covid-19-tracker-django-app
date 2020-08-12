@@ -129,3 +129,4 @@ dmypy.json
 .pyre/
 .idea
 coronavirus/migrations/0*
+admin_panel/migrations/0*

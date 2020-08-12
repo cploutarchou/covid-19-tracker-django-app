@@ -6,7 +6,6 @@ from app.manage_sources import get_files
 from datetime import datetime as d
 import plotly.graph_objs as go
 
-
 from coronavirus.models import DailyStats
 
 files = get_files()
@@ -60,16 +59,18 @@ for index, row in df.iterrows():
     if res:
         continue
 
-
-
-
 today = d.today()
 current_date = d(today.year, today.month, 1)
 month = current_date.month
 year = current_date.year
 filtered_df = daily_cases_df[daily_cases_df['month'] == 8]
 app = DjangoDash('dash_daily_statistics')
-fig = go.Figure(data=[go.Scatter(x=filtered_df['day'], y=filtered_df['daily new cases'])])
+fig = go.Figure(
+    data=[
+        go.Scatter(x=filtered_df['day'], y=filtered_df['daily new cases'], name="Positive", ),
+        go.Scatter(x=filtered_df['day'], y=filtered_df['daily deaths'], name="Deaths", mode='markers',
+                   marker={'size': 10}),
+    ])
 fig.update_layout(
     title={
         'text': "COVID-19 Cyprus Daily Statistics",
@@ -82,7 +83,14 @@ fig.update_layout(
     },
     yaxis={
         'title': 'New Cases'
-    }
+    },
+    legend=dict(
+        orientation="h",
+        yanchor="bottom",
+        y=1.02,
+        xanchor="right",
+        x=1
+    )
 
 )
 
