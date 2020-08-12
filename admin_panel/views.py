@@ -16,7 +16,7 @@ class IndexView(ListView):
 
 class ContactDetailView(DetailView):
     model = Contact
-    template_name = 'admin_panel/contact-detail.html'
+    template_name = 'contact-detail.html'
 
 
 def create(request):
@@ -27,10 +27,10 @@ def create(request):
             return redirect('index')
     form = ContactForm()
 
-    return render(request, 'admin_panel/create.html', {'form': form})
+    return render(request, 'create.html', {'form': form})
 
 
-def edit(request, pk, template_name='crudapp/edit.html'):
+def edit(request, pk, template_name='edit.html'):
     contact = get_object_or_404(Contact, pk=pk)
     form = ContactForm(request.POST or None, instance=post)
     if form.is_valid():
@@ -39,7 +39,7 @@ def edit(request, pk, template_name='crudapp/edit.html'):
     return render(request, template_name, {'form': form})
 
 
-def delete(request, pk, template_name='admin_panel/confirm_delete.html'):
+def delete(request, pk, template_name='confirm_delete.html'):
     contact = get_object_or_404(Contact, pk=pk)
     if request.method == 'POST':
         contact.delete()
