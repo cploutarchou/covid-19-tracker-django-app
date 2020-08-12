@@ -39,7 +39,9 @@ INSTALLED_APPS = [
     'channels',
     'bootstrap4',
     'django_plotly_dash',
-    'dpd_static_support'
+    'dpd_static_support',
+    'widget_tweaks',
+    'admin_panel'
 ]
 
 MIDDLEWARE = [
