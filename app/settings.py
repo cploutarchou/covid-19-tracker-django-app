@@ -140,7 +140,7 @@ CHANNEL_LAYERS = {
 ASGI_APPLICATION = "coronavirus.routing.application"
 
 # To use home.html as default home page
-LOGIN_REDIRECT_URL = 'home'
+LOGIN_REDIRECT_URL = '/secure_admin/'
 LOGOUT_REDIRECT_URL = 'home'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'coronavirus')
@@ -173,3 +173,6 @@ STATICFILES_FINDERS = [
     'django_plotly_dash.finders.DashComponentFinder',
     'django_plotly_dash.finders.DashAppDirectoryFinder',
 ]
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
