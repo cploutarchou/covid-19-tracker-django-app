@@ -7,7 +7,7 @@ from django.views.generic import ListView, DetailView
 
 
 class IndexView(ListView):
-    template_name = 'admin_panel/index.html'
+    template_name = 'admin_base.html'
     context_object_name = 'contact_list'
 
     def get_queryset(self):
