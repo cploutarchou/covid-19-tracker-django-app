@@ -65,7 +65,12 @@ month = current_date.month
 year = current_date.year
 filtered_df = daily_cases_df[daily_cases_df['month'] == 8]
 app = DjangoDash('dash_daily_statistics')
-fig = go.Figure(data=[go.Scatter(x=filtered_df['day'], y=filtered_df['daily new cases'])])
+fig = go.Figure(
+    data=[
+        go.Scatter(x=filtered_df['day'], y=filtered_df['daily new cases'], name="Positive", ),
+        go.Scatter(x=filtered_df['day'], y=filtered_df['daily deaths'], name="Deaths", mode='markers',
+                   marker={'size': 10}),
+    ])
 fig.update_layout(
     title={
         'text': "COVID-19 Cyprus Daily Statistics",
@@ -78,7 +83,14 @@ fig.update_layout(
     },
     yaxis={
         'title': 'New Cases'
-    }
+    },
+    legend=dict(
+        orientation="h",
+        yanchor="bottom",
+        y=1.02,
+        xanchor="right",
+        x=1
+    )
 
 )
 
