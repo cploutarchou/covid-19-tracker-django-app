@@ -1,10 +1,61 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'admin_base.html' %}
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-1 col-xs-1 col-sm-1"></div>
+            <div class="col-md-10 col-xs-10 col-sm-10">
+                <h3 class="round3" style="text-align:center;">Contacts</h3>
+            </div>
+            <div class="col-md-1 col-xs-1 col-sm-1"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-10 col-xs-10 col-sm-10"></div>
+            <div class="col-md-2 col-xs-1 col-sm-1">
+                <br/>
+                <a href="{% url 'create' %}">
+                    <button type="button" class="btn btn-success">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </button>
+                </a>
+            </div>
+        </div>
+        <br/>
+        {% for contact in contact_list %}
+            <div class="row">
+                <div class="col-md-1 col-xs-1 col-sm-1"></div>
+                <div class="col-md-7 col-xs-7 col-sm-7">
+                    <ul class="list-group">
 
-</body>
-</html>
+                        <li class="list-group-item ">
+                            <a href="{% url 'detail' contact.pk %}"> {{ contact.firstName }} {{ contact.lastName }} </a>
+                            <span class="badge"></span>
+                        </li>
+                    </ul>
+                    <br>
+                </div>
+                <div class="col-md-1 col-xs-1 col-sm-1">
+                    <a href="{% url 'detail' contact.pk %}">
+                        <button type="button" class="btn btn-info">
+                            <span class="glyphicon glyphicon-open"></span>
+                        </button>
+                    </a>
+                </div>
+                <div class="col-md-1">
+                    <a href="{% url 'edit' contact.pk %}">
+                        <button type="button" class="btn btn-info">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                        </button>
+                    </a>
+                </div>
+                <div class="col-md-1">
+                    <a href="{% url 'delete' contact.pk %}">
+                        <button type="button" class="btn btn-danger">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+                    </a>
+                </div>
+                <div class="col-md-1 col-xs-1 col-sm-1"></div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
