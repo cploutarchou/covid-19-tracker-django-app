@@ -130,3 +130,4 @@ dmypy.json
 .idea
 coronavirus/migrations/0*
 admin_panel/migrations/0*
+covid.db
