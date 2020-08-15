@@ -3,12 +3,12 @@ dash-renderer
 dash-html-components
 dash-core-components
 dash-bootstrap-components
-plotly
-pandas
-numpy
-django
+plotly~=4.9.0
+pandas~=1.1.0
+numpy~=1.19.1
+django~=3.1
 mysqlclient
-channels
+channels~=2.4.0
 daphne
 redis
 django-redis
@@ -21,3 +21,4 @@ whitenoise
 django_plotly_dash
 django-widget-tweaks
 python-dotenv
+django-treebeard
