@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django_plotly_dash',
     'dpd_static_support',
     'widget_tweaks',
+    'treebeard'
 ]
 
 MIDDLEWARE = [
