@@ -30,6 +30,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'admin_panel',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -41,8 +42,7 @@ INSTALLED_APPS = [
     'bootstrap4',
     'django_plotly_dash',
     'dpd_static_support',
-    'widget_tweaks',
-    'treebeard'
+    'widget_tweaks'
 ]
 
 MIDDLEWARE = [
@@ -157,8 +157,8 @@ CHANNEL_LAYERS = {
 ASGI_APPLICATION = "coronavirus.routing.application"
 
 # To use home.html as default home page
-LOGIN_REDIRECT_URL = '/secure_admin/'
-LOGOUT_REDIRECT_URL = 'home'
+# LOGIN_REDIRECT_URL = '/secure_admin/'
+# LOGOUT_REDIRECT_URL = 'home'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'coronavirus')
 STATIC_URL = '/static/default/'
@@ -183,7 +183,6 @@ PLOTLY_COMPONENTS = [
 # Staticfiles finders for locating dash app assets and related files (Dash static files)
 
 STATICFILES_FINDERS = [
-
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     'django_plotly_dash.finders.DashAssetFinder',

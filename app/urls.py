@@ -30,7 +30,6 @@ import coronavirus.dash_daily_statistics
 
 from django_plotly_dash.views import add_to_session
 
-from admin_panel import views as admin_panel_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
