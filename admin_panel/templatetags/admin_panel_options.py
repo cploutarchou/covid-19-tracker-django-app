@@ -37,16 +37,8 @@ def get_adminlte_settings():
         return settings.ADMINLTE_SETTINGS
     else:
         return {
-            'demo': True,
+            'demo': False,
             'search_form': True,
-            # 'skin': 'blue',
-            # 'copyright': '<a href="https://github.com/wuyue92tree/django-adminlte-ui/tree/'+version+'">django-admin_panel-ui '+version+'</a>',
-            # 'navigation_expanded': True,
-
-            # if you are use custom menu, which will not effective below!
-
-            # 'show_apps': ['django_admin_settings', 'auth', 'main'],
-            # 'main_navigation_app': 'django_admin_settings',
             'icons': {
                 'myapp': {
                     'shops': 'fa-shopping-cart',

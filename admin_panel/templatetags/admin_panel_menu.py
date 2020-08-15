@@ -6,7 +6,7 @@ from django.contrib.admin import AdminSite
 from django.http import HttpRequest
 from django.utils.translation import gettext_lazy as _
 from django.contrib.contenttypes.models import ContentType
-from admin_panel.templatetags.adminlte_options import get_adminlte_option, \
+from admin_panel.templatetags.admin_panel_options import get_adminlte_option, \
     get_adminlte_settings
 from admin_panel.models import Menu
 
