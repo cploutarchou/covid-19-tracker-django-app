@@ -1,1 +1,2 @@
-# WIP-covid-19-tracker
+# work-in-progress....................................
+covid-19-tracker
