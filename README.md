@@ -1,2 +1,2 @@
 # work-in-progress....................................
-covid-19-tracker
+COVID-19 Tracker Dashboard for Cyprus.
