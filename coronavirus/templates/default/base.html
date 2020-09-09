@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link rel="icon" href="{% static "assets/img/favicons/favicon.ico" %}">
 
-    <title>Dashboard Template for Bootstrap</title>
+    <title>Cyprus COVID-19 Tracker</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/dashboard/">
 
@@ -90,8 +90,13 @@
                     </button>
                 </div>
             </div>
-
-            {% plotly_app name='dash_daily_statistics' ratio=0.41%}
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <div class="breadcrumb-item active">Date Range :{{ current_month }} From {{ month_first_date }} To
+                        : {{ today_date }}</div>
+                </ol>
+            </nav>
+            {% plotly_app name='dash_daily_statistics' ratio=0.41 %}
 
         </main>
     </div>
