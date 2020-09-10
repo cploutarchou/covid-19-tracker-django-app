@@ -1,0 +1,24 @@
+  version: '3'
+
+  services:
+    db:
+      image: postgres
+      environment:
+        - POSTGRES_DB=covid.db
+        - POSTGRES_USER=
+        - POSTGRES_PASSWORD=
+    web:
+      build: .
+      command: python manage.py runserver 0.0.0.0:8000
+      volumes:
+        - .:/code
+      ports:
+        - "8000:8000"
+      depends_on:
+        - db
+    redis:
+      image: redis
+      ports:
+        - "6379:6379"
+      volumes:
+        - ./redis/redis.conf:/usr/local/etc/redis/redis.conf
