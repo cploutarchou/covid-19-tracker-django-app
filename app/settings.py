@@ -20,12 +20,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY="d2lmlnwir=_js%vh6_o3&klj9!7nsx@8_mu9!0ij-$&na_7ga4"
+SECRET_KEY = "d2lmlnwir=_js%vh6_o3&klj9!7nsx@8_mu9!0ij-$&na_7ga4"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['0.0.0.0','localhost']
 
 # Application definition
 
@@ -79,35 +79,23 @@ TEMPLATES = [
 WSGI_APPLICATION = 'app.wsgi.application'
 
 # Database
-# https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-if config.env_type != 'DEV':
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'covid',
-            'USER': 'covid',
-            'PASSWORD': 'pass',
-            'HOST': '127.0.0.1',
-            'PORT': '3306',
-        }
-    }
-else:
-    ADMINS = (
-        ('christos', 'cploutarchou@gmail.com'),
-    )
 
-    MANAGERS = ADMINS
+ADMINS = (
+    ('christos', 'cploutarchou@gmail.com'),
+)
 
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',  # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-            'NAME': 'covid.db',  # Or path to database file if using sqlite3.
-            'USER': '',  # Not used with sqlite3.
-            'PASSWORD': '',  # Not used with sqlite3.
-            'HOST': '',  # Set to empty string for localhost. Not used with sqlite3.
-            'PORT': '',  # Set to empty string for default. Not used with sqlite3.
-        }
+MANAGERS = ADMINS
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',  # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'covid.db',  # Or path to database file if using sqlite3.
+        'USER': '',  # Not used with sqlite3.
+        'PASSWORD': '',  # Not used with sqlite3.
+        'HOST': '',  # Set to empty string for localhost. Not used with sqlite3.
+        'PORT': '',  # Set to empty string for default. Not used with sqlite3.
     }
+}
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
