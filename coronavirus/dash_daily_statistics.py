@@ -5,10 +5,12 @@ from django_plotly_dash import DjangoDash
 from app.manage_sources import get_files
 from datetime import datetime as d
 import plotly.graph_objs as go
-
+from .common import CurrentMonth
 from coronavirus.models import DailyStats
 
 files = get_files()
+current_month = CurrentMonth()
+
 
 
 def date_parse(x):
@@ -63,7 +65,7 @@ today = d.today()
 current_date = d(today.year, today.month, 1)
 month = current_date.month
 year = current_date.year
-filtered_df = daily_cases_df[daily_cases_df['month'] == 8]
+filtered_df = daily_cases_df[daily_cases_df['month'] == current_month.get_current_month_int()]
 app = DjangoDash('dash_daily_statistics')
 fig = go.Figure(
     data=[
