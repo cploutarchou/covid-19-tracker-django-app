@@ -138,7 +138,7 @@ fieldset.module > h2:first-child {
   background: #f9f9f9;
   border-bottom: 1px solid #ddd;
   border-top: 2px solid #ddd;
-  margin: 10px -15px 10px;
+  margin: 10px -15px;
   padding: 5px 15px;
 }
 
@@ -188,7 +188,7 @@ fieldset.collapsed h2, fieldset.collapsed {
   left: 40%;
   list-style: none;
   margin: 0;
-  padding:9.5em 10px 0 10px;
+  padding:9.5em 10px 0;
   position: absolute;
   text-align: center;
   width: 20%;
@@ -419,7 +419,7 @@ div[class^='widget_type'] .form-group, div[class*=' widget_type'] .form-group {
 .inline-group .tabular td.original {
   max-width: 200px;
   overflow: hidden;
-  word-wrap: break-word;;
+  word-wrap: break-word;
 }
 .inline-group td.original p {
   margin: 0;
