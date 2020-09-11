@@ -14,7 +14,7 @@ body {
     width: 600px;
 }
 .logo-admin {
-    margin:0 auto 20px auto;
+    margin:0 auto 20px;
     display: block;
 }
 #login-form legend {
