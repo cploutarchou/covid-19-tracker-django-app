@@ -139,7 +139,7 @@
 
 .timeline {
   list-style: none;
-  padding: 20px 0 20px;
+  padding: 20px 0;
   position: relative;
 }
 .timeline:before {
