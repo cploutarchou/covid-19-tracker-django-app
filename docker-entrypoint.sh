@@ -1,11 +1,10 @@
 #!/bin/bash
-
-python manage.py runserver 0.0.0.0:8000
+python manage.py runserver 0.0.0.0:8080
 # Collect static files
 echo "Collect static files"
 python manage.py collectstatic --noinput
 
-# Run makemigrations
+# Run make migrations
 echo "Collect static files"
 python manage.py makemigrations --noinput
 
