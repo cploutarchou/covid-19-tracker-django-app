@@ -25,7 +25,7 @@ SECRET_KEY = "d2lmlnwir=_js%vh6_o3&klj9!7nsx@8_mu9!0ij-$&na_7ga4"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0','localhost']
+ALLOWED_HOSTS = ['0.0.0.0', 'localhost']
 
 # Application definition
 
