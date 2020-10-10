@@ -1,11 +1,12 @@
-version: '3'
+version: '3.8'
 
 services:
   db:
     image: postgres
     environment:
       - POSTGRES_DB=covid.db
-      - POSTGRES_HOST_AUTH_METHOD=trust
+      - POSTGRES_USER=
+      - POSTGRES_PASSWORD=
   web:
     build: .
     command: python manage.py runserver 0.0.0.0:8000
@@ -21,3 +22,13 @@ services:
       - "6379:6379"
     volumes:
       - ./redis/redis.conf:/usr/local/etc/redis/redis.conf
+
+  redis-commander:
+    container_name: redis-commander
+    hostname: redis-commander
+    image: rediscommander/redis-commander:latest
+    restart: always
+    environment:
+      - REDIS_HOSTS=local:redis:6379
+    ports:
+      - "8081:8081"

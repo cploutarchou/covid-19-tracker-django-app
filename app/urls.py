@@ -27,9 +27,9 @@ from django.conf.urls.static import static
 
 # Loading plotly Dash apps script
 import coronavirus.dash_daily_statistics
+import coronavirus.dash_asymptomatic_distribution_cases
 
 from django_plotly_dash.views import add_to_session
-
 
 urlpatterns = [
     path('admin/', admin.site.urls),
