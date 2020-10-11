@@ -5,8 +5,8 @@ services:
     image: postgres
     environment:
       - POSTGRES_DB=covid.db
-      - POSTGRES_USER=
-      - POSTGRES_PASSWORD=
+      - POSTGRES_USER=dev
+      - POSTGRES_PASSWORD=dev
   web:
     build: .
     command: python manage.py runserver 0.0.0.0:8000
