@@ -2,28 +2,28 @@ from django import template
 
 register = template.Library()
 
-GREEN = "text-success"
-RED = "text-danger"
+green = "text-success"
+red = "text-danger"
 
-ARROW_UP = "fa fa-angle-up"
-ARROW_DOWN = "fa fa-angle-down"
+arrow_up = "fa fa-angle-up"
+arrow_down = "fa fa-angle-down"
 
-CONDITIONS = {
+conditions = {
     'death_rate': {
-        "GT_0": (RED, ARROW_UP),
-        "LT_0": (GREEN, ARROW_DOWN)
+        "BC_0": (red, arrow_up),
+        "GC_0": (green, arrow_down)
     },
     'recovered': {
-        "GT_0": (GREEN, ARROW_UP),
-        "LT_0": (RED, ARROW_DOWN)
+        "BC_0": (green, arrow_up),
+        "GC_0": (red, arrow_down)
     },
     'confirmed': {
-        "GT_0": (RED, ARROW_UP),
-        "LT_0": (GREEN, ARROW_DOWN)
+        "BC_0": (red, arrow_up),
+        "GC_0": (green, arrow_down)
     },
     'deaths': {
-        "GT_0": (RED, ARROW_UP),
-        "LT_0": (GREEN, ARROW_DOWN)
+        "BC_0": (red, arrow_up),
+        "GC_0": (green, arrow_down)
     },
 }
 
@@ -31,14 +31,14 @@ CONDITIONS = {
 @register.simple_tag
 def arrow(name, value):
     if value > 0:
-        return CONDITIONS[name]["GT_0"][1]
+        return conditions[name]["BC_0"][1]
     else:
-        return CONDITIONS[name]["LT_0"][1]
+        return conditions[name]["GC_0"][1]
 
 
 @register.simple_tag
 def color(name, value):
     if value > 0:
-        return CONDITIONS[name]["GT_0"][0]
+        return conditions[name]["BC_0"][0]
     else:
-        return CONDITIONS[name]["LT_0"][0]
+        return conditions[name]["GC_0"][0]
