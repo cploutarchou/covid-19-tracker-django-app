@@ -57,6 +57,7 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'core.urls'
 LOGIN_REDIRECT_URL = "home"  # Route defined to app/urls.py
 LOGOUT_REDIRECT_URL = "home"  # Route defined to app/urls.py
+TEMPLATE_DIR = os.path.join(BASE_DIR, "core/templates")
 
 TEMPLATES = [
     {
@@ -70,6 +71,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+            'libraries': dict(tags='app.tags.tags')
         },
     },
 ]
