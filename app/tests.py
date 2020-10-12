@@ -2,7 +2,7 @@
 
 from django.test import TestCase
 
-from app.templatetags import tags
+from app.tags import tags
 
 
 class TestTrendTemplateTags(TestCase):
