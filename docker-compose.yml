@@ -1,34 +1,35 @@
 version: '3.8'
 
 services:
-  db:
-    image: postgres
-    environment:
-      - POSTGRES_DB=covid.db
-      - POSTGRES_USER=dev
-      - POSTGRES_PASSWORD=dev
-  web:
-    build: .
-    command: python manage.py runserver 0.0.0.0:8000
-    volumes:
-      - .:/code
-    ports:
-      - "8000:8000"
-    depends_on:
-      - db
+#  db:
+  #    image: postgres
+  #    environment:
+  #      - POSTGRES_DB=covid.db
+  #      - POSTGRES_USER=dev
+  #      - POSTGRES_PASSWORD=dev
+  #  web:
+  #    build: .
+  #    command: python manage.py runserver 0.0.0.0:8000
+  #    volumes:
+  #      - .:/code
+  #    ports:
+  #      - "8000:8000"
+  #    depends_on:
+  #      - db
   redis:
     image: redis
+    restart: always
     ports:
       - "6379:6379"
     volumes:
       - ./redis/redis.conf:/usr/local/etc/redis/redis.conf
 
-  redis-commander:
-    container_name: redis-commander
-    hostname: redis-commander
-    image: rediscommander/redis-commander:latest
-    restart: always
-    environment:
-      - REDIS_HOSTS=local:redis:6379
-    ports:
-      - "8081:8081"
+#  redis-commander:
+#    container_name: redis-commander
+#    hostname: redis-commander
+#    image: rediscommander/redis-commander:latest
+#    restart: always
+#    environment:
+#      - REDIS_HOSTS=local:redis:6379
+#    ports:
+#      - "8081:8081"
