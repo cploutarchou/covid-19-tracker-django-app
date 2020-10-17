@@ -1,0 +1,24 @@
+{
+  "regions": [
+    {
+      "name": "Nicosia",
+      "population": 0
+    },
+    {
+      "firstName": "Larnaca",
+      "lastName": 0
+    },
+    {
+      "firstName": "Famagusta",
+      "lastName": 0
+    },
+    {
+      "firstName": "Limassol",
+      "lastName": 0
+    },
+    {
+      "firstName": "Paphos",
+      "lastName": 0
+    }
+  ]
+}
