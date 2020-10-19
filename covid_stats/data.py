@@ -1,14 +1,6 @@
 import datetime
-import platform
 
 import pandas as pd
-
-if platform.system() == 'Linux':
-    DATE_DATA_FRAME_FORMAT: str = '%-m/%-d/%y'
-elif platform.system() == 'Windows':
-    DATE_DATA_FRAME_FORMAT: str = '%#m/%#d/%y'
-else:
-    DATE_DATA_FRAME_FORMAT: str = '%-m/%-d/%y'
 
 
 def daily_new_cases():
@@ -21,6 +13,3 @@ def daily_new_cases():
     result = (df['day'] == yesterday)
     df = df.loc[result]['daily new cases']
     return df
-
-
-res = daily_new_cases()
