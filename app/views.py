@@ -15,5 +15,5 @@ def pages(request):
         template = loader.get_template('pages/' + load_template)
         return HttpResponse(template.render(context, request))
     except:
-        template = loader.get_template('pages/404.html')
+        template = loader.get_template('404.html')
         return HttpResponse(template.render(context, request))
