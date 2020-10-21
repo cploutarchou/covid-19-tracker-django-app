@@ -6,8 +6,10 @@ from django.template import loader
 from covid_stats import data
 
 cases = data.daily_new_cases()
+daily_tests = data.daily_tests_performed()
 index_page_context = {
     "new_cases": {"title": "Today Cases", "cases": cases},
+    "daily_test": {"title": "Today Tests", "test": daily_tests},
     "dashboard_text": "Daily Statistics"
 }
 
