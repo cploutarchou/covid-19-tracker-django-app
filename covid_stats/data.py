@@ -12,4 +12,6 @@ def daily_new_cases():
     df['day'] = pd.to_datetime(df['date'].str.strip(), format='%d/%m/%Y')
     result = (df['day'] == yesterday)
     df = df.loc[result]['daily new cases']
-    return df
+    if df.values:
+        return df.values[0]
+    return "Updating Data...."
