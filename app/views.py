@@ -3,9 +3,19 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.template import loader
 
+from covid_stats import data
+
+cases = data.daily_new_cases()
+daily_tests = data.daily_tests_performed()
+index_page_context = {
+    "new_cases": {"title": "Today Cases", "cases": cases},
+    "daily_test": {"title": "Today Tests", "test": daily_tests},
+    "dashboard_text": "Daily Statistics"
+}
+
 
 def index(request):
-    return render(request, 'index.html')
+    return render(request, template_name="index.html", context=index_page_context)
 
 
 def pages(request):
