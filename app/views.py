@@ -7,9 +7,11 @@ from covid_stats import data
 
 cases = data.daily_new_cases()
 daily_tests = data.daily_tests_performed()
+daily_deaths = data.daily_deaths()
 index_page_context = {
     "new_cases": {"title": "Today Cases", "cases": cases},
     "daily_test": {"title": "Today Tests", "test": daily_tests},
+    "daily_deaths": {"title": "Today Deaths", "deaths": daily_deaths},
     "dashboard_text": "Daily Statistics"
 }
 
