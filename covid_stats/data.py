@@ -48,4 +48,4 @@ def daily_deaths():
     return df.values[0]
 
 
-res = daily_deaths()
+def new_cases_rate_compared_yesterday_date(): pass
