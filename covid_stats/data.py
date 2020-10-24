@@ -59,7 +59,8 @@ def new_cases_rate_compared_yesterday_date():
     two_dates_before = get_two_dates_before()
     df = daily_report_df()
     df = df.fillna(0)
-    df['day'] = df.to_datetime(df['date'].str.strip(), format='%d/%m/%Y')
+    df['day'] = pd.to_datetime(df['date'].str.strip(), format='%d/%m/%Y')
+
     yesterday_res = (df['day'] == yesterday)
     yesterday_df = df.loc[yesterday_res]['daily new cases'].astype(np.int64)
 
@@ -80,4 +81,4 @@ def new_cases_rate_compared_yesterday_date():
     if res:
         return res
     else:
-        return "Unable to load data"
+        return False
