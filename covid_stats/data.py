@@ -11,7 +11,7 @@ data_sources = dict(
 
 def daily_report_df():
     url = data_sources['daily_report_url']
-    df = pd.read_csv(filepath_or_buffer=url, header='infer')
+    df = pd.read_csv(filepath_or_buffer=url, header='infer', delimiter=";")
     return df
 
 
@@ -23,7 +23,10 @@ def daily_new_cases():
     df['day'] = pd.to_datetime(df['date'].str.strip(), format='%d/%m/%Y')
     result = (df['day'] == yesterday)
     df = df.loc[result]['daily new cases']
-    return df.values[0]
+    if len(df.values) is not 0:
+        return df.values[0]
+    else:
+        return "Unable to load data"
 
 
 def daily_tests_performed():
@@ -34,7 +37,10 @@ def daily_tests_performed():
     df['day'] = pd.to_datetime(df['date'].str.strip(), format='%d/%m/%Y')
     result = (df['day'] == yesterday)
     df = df.loc[result]['daily tests performed']
-    return df.values[0]
+    if len(df.values) is not 0:
+        return df.values[0]
+    else:
+        return "Unable to load data"
 
 
 def daily_deaths():
@@ -45,7 +51,11 @@ def daily_deaths():
     df['day'] = pd.to_datetime(df['date'].str.strip(), format='%d/%m/%Y')
     result = (df['day'] == yesterday)
     df = df.loc[result]['daily deaths'].astype(np.int64)
-    return df.values[0]
+    if len(df.values) is not 0:
+        return df.values[0]
+    else:
+        return "Unable to load data"
 
 
-def new_cases_rate_compared_yesterday_date(): pass
+def new_cases_rate_compared_yesterday_date():
+    pass
