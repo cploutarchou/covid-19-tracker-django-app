@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 
-from core.functions import *
+from core.functions import GeneralFunctions as general, Dates
 
 data_sources = dict(
     daily_report_url="https://raw.githubusercontent.com/cploutarchou/covid-19-tracker-django-app/master/"
@@ -9,15 +9,15 @@ data_sources = dict(
 )
 
 
-def daily_report_df():
+def get_daily_data():
     url = data_sources['daily_report_url']
     df = pd.read_csv(filepath_or_buffer=url, header='infer', delimiter=";")
     return df
 
 
 def daily_new_cases():
-    yesterday = get_yesterday_date()
-    df = daily_report_df()
+    yesterday = Dates.get_yesterday_date()
+    df = get_daily_data()
     df = df.fillna(0)
     df['day'] = pd.to_datetime(df['date'].str.strip(), format='%d/%m/%Y')
     result = (df['day'] == yesterday)
@@ -29,8 +29,8 @@ def daily_new_cases():
 
 
 def daily_tests_performed():
-    yesterday = get_yesterday_date()
-    df = daily_report_df()
+    yesterday = Dates.get_yesterday_date()
+    df = get_daily_data()
     df = df.fillna(0)
     df['day'] = pd.to_datetime(df['date'].str.strip(), format='%d/%m/%Y')
     result = (df['day'] == yesterday)
@@ -42,8 +42,8 @@ def daily_tests_performed():
 
 
 def daily_deaths():
-    yesterday = get_yesterday_date()
-    df = daily_report_df()
+    yesterday = Dates.get_yesterday_date()
+    df = get_daily_data()
     df = df.fillna(0)
     df['day'] = pd.to_datetime(df['date'].str.strip(), format='%d/%m/%Y')
     result = (df['day'] == yesterday)
@@ -55,9 +55,9 @@ def daily_deaths():
 
 
 def new_cases_rate_compared_yesterday_date():
-    yesterday = get_yesterday_date()
-    two_dates_before = get_two_dates_before()
-    df = daily_report_df()
+    yesterday = Dates.get_yesterday_date()
+    two_dates_before = Dates.get_two_dates_before()
+    df = get_daily_data()
     df = df.fillna(0)
     df['day'] = pd.to_datetime(df['date'].str.strip(), format='%d/%m/%Y')
 
@@ -77,8 +77,12 @@ def new_cases_rate_compared_yesterday_date():
     if len(yesterday_df.values) is not 0:
         two_dates_before_value = two_dates_before_df.values[0]
 
-    res = percentage_difference_calculator(old_value=yesterday_value, new_value=two_dates_before_value)
+    res = general.percentage_difference_calculator(old_value=yesterday_value, new_value=two_dates_before_value)
     if res:
         return res
     else:
         return False
+
+
+def get_current_month_data():
+    pass
