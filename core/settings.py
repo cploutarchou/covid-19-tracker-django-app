@@ -56,6 +56,7 @@ TEMPLATES = [
             ],
             'libraries': {
                 'trend': 'app.tags.tags',
+                'daily_growth': 'covid_stats.plotly_charts.daily_growth'
 
             }
         },
