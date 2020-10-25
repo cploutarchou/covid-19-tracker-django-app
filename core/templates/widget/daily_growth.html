@@ -1,4 +1,4 @@
-{% load daily_growth %}
+{%load plotly_dash%}
 <div class="container-fluid">
     <div class="row">
 
@@ -17,7 +17,7 @@
                             <div class="chartjs-size-monitor-expand">
                                 <div class=""></div>
                             </div>
-                            {% plotly_app name='dash_integration_id' ratio=0.45 %}
+                           {%plotly_app name="SimpleExample"%}
                             <div class="chartjs-size-monitor-shrink">
                                 <div class=""></div>
                             </div>

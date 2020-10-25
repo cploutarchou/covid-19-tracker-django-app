@@ -1,12 +1,13 @@
-import dash
 import dash_core_components as dcc
 import dash_html_components as html
 import plotly.express as px
 import plotly.graph_objects as go
-
+from django import template
 from covid_stats.data import get_daily_data
+from django_plotly_dash import DjangoDash
 
-app = dash.Dash(__name__)
+register = template.Library()
+app = DjangoDash('SimpleExample')
 
 df = get_daily_data()
 df['id'] = df.index
@@ -20,17 +21,19 @@ fig.add_traces(go.Bar(x=df['id'], y=df['daily tests performed'], marker=dict(col
 # noinspection PyTypeChecker
 fig.add_traces(go.Bar(x=df['id'], y=df['daily deaths'], marker=dict(color=colors[2])))
 
-app.layout = html.Div([
-    html.H1('Square Root Slider Graph'),
-    dcc.Graph(id='slider-graph', figure={'data': [fig]}, animate=True,
-              style={"backgroundColor": "#1a2d46", 'color': '#ffffff'},
-              ),
-    dcc.Dropdown(id='demo-dropdown',
-                 options=[
-                     {'label': 'Daily', 'value': 'daily'},
-                     {'label': 'Weekly', 'value': 'weekly'},
-                     {'label': 'Monthly', 'value': 'monthly'}
-                 ],
-                 value='weekly'),
-    html.Div(id='display-value')
-])
+app.layout = html.Div(children=[
+    dcc.Graph(
+        id='example-graph',
+        figure=fig
+    )
+
+],
+
+    style={
+        'width': '100%',
+        'height': '100%',
+        'fontFamily': 'Sans-Serif',
+        'margin-left': '1cm',
+        'margin-right': 'auto'
+    }
+)
