@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 
-from core.functions import GeneralFunctions as general, Dates
+from app.functions import GeneralFunctions as General, Dates
 
 data_sources = dict(
     daily_report_url="https://raw.githubusercontent.com/cploutarchou/covid-19-tracker-django-app/master/"
@@ -77,7 +77,7 @@ def new_cases_rate_compared_yesterday_date():
     if len(yesterday_df.values) is not 0:
         two_dates_before_value = two_dates_before_df.values[0]
 
-    res = general.percentage_difference_calculator(old_value=yesterday_value, new_value=two_dates_before_value)
+    res = General.percentage_difference_calculator(old_value=yesterday_value, new_value=two_dates_before_value)
     if res:
         return res
     else:
