@@ -15,15 +15,20 @@ class GeneralFunctions(object):
 
 
 class Dates:
+
     @staticmethod
-    def get_current_datetime(date_string, str_format="%Y-%m-%d"):
+    def query_date(days_difference: int = None) -> datetime:
+        return datetime.date.today() - datetime.timedelta(days=days_difference)
+
+    @staticmethod
+    def get_current_datetime(date_string, str_format="%Y-%m-%d") -> datetime:
         # Expects "YYYY-MM-DD" string
         # returns a datetime object
         e_seconds = time.mktime(time.strptime(date_string, str_format))
         return datetime.datetime.fromtimestamp(e_seconds)
 
     @staticmethod
-    def format_date(input_datetime, str_format="%Y-%m-%d"):
+    def format_date(input_datetime, str_format="%Y-%m-%d") -> time.strftime:
         # format a datetime object as YYYY-MM-DD string and return
         return input_datetime.strftime(str_format)
 
@@ -36,29 +41,26 @@ class Dates:
 
     @staticmethod
     def get_current_month_first_day_2(input_datetime):
-        # what is the first day of the current month
-        # format the year and month + 01 for the current datetime, then form it back
-        # into a datetime object
         return Dates.get_current_datetime(Dates.format_date(input_datetime, "%Y-%m-01"))
 
     @staticmethod
-    def get_current_month_last_day(input_datetime):
+    def get_current_month_last_day(input_datetime) -> datetime:
         year = input_datetime.strftime("%Y")  # get the year
-        month = str(int(input_datetime.strftime("%m")) % 12 + 1)  # get next month, watch rollover
+        month = str(int(input_datetime.strftime("%m")) % 12 + 1)
         date = "1"  # first day of next month
         next_month = Dates.get_current_datetime(
             "%s-%s-%s" % (year, month, date))  # make a datetime obj for 1st of next month
         delta = datetime.timedelta(seconds=1)  # create a delta of 1 second
-        return next_month - delta  # subtract from nextMonth and return
+        return next_month - delta  # subtract from next_month and return
 
     @staticmethod
-    def get_yesterday_date():
-        yesterday = datetime.date.today() - datetime.timedelta(days=2)
+    def get_yesterday_date() -> time.strftime:
+        yesterday = Dates.query_date(3)
         yesterday = yesterday.strftime('%Y-%m-%d')
         return yesterday
 
     @staticmethod
-    def get_two_dates_before():
-        res = datetime.date.today() - datetime.timedelta(days=3)
+    def get_two_dates_before() -> time.strftime:
+        res = Dates.query_date(4)
         res = res.strftime('%Y-%m-%d')
         return res
