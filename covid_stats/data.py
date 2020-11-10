@@ -1,17 +1,25 @@
 import numpy as np
 import pandas as pd
+import os
 
-from core.functions import GeneralFunctions as general, Dates
+from app.functions import GeneralFunctions as General, Dates
 
+data_sources_dir = os.path.dirname(os.path.realpath('__file__'))
 data_sources = dict(
-    daily_report_url="https://raw.githubusercontent.com/cploutarchou/covid-19-tracker-django-app/master/"
-                     "data-sources/daily_report_data.csv"
+    daily_report_url=os.path.join(data_sources_dir, 'data-sources/daily_report_data.csv'),
 )
 
 
-def get_daily_data():
+def get_daily_data() -> pd.DataFrame:
     url = data_sources['daily_report_url']
-    df = pd.read_csv(filepath_or_buffer=url, header='infer', delimiter=";")
+    df = pd.read_csv(filepath_or_buffer=url, header='infer')
+    df.index = [x for x in range(1, len(df.values)+1)]
+    df.index.name = 'id'
+    return df
+
+
+def convert_to_date(df: pd.DataFrame) -> pd.DataFrame:
+    df['day'] = pd.to_datetime(df['date'], errors='coerce')
     return df
 
 
@@ -19,7 +27,7 @@ def daily_new_cases():
     yesterday = Dates.get_yesterday_date()
     df = get_daily_data()
     df = df.fillna(0)
-    df['day'] = pd.to_datetime(df['date'].str.strip(), format='%d/%m/%Y')
+    df = convert_to_date(df)
     result = (df['day'] == yesterday)
     df = df.loc[result]['daily new cases']
     if len(df.values) is not 0:
@@ -32,7 +40,7 @@ def daily_tests_performed():
     yesterday = Dates.get_yesterday_date()
     df = get_daily_data()
     df = df.fillna(0)
-    df['day'] = pd.to_datetime(df['date'].str.strip(), format='%d/%m/%Y')
+    df = convert_to_date(df)
     result = (df['day'] == yesterday)
     df = df.loc[result]['daily tests performed']
     if len(df.values) is not 0:
@@ -45,7 +53,7 @@ def daily_deaths():
     yesterday = Dates.get_yesterday_date()
     df = get_daily_data()
     df = df.fillna(0)
-    df['day'] = pd.to_datetime(df['date'].str.strip(), format='%d/%m/%Y')
+    df = convert_to_date(df)
     result = (df['day'] == yesterday)
     df = df.loc[result]['daily deaths'].astype(np.int64)
     if len(df.values) is not 0:
@@ -59,7 +67,7 @@ def new_cases_rate_compared_yesterday_date():
     two_dates_before = Dates.get_two_dates_before()
     df = get_daily_data()
     df = df.fillna(0)
-    df['day'] = pd.to_datetime(df['date'].str.strip(), format='%d/%m/%Y')
+    df = convert_to_date(df)
 
     yesterday_res = (df['day'] == yesterday)
     yesterday_df = df.loc[yesterday_res]['daily new cases'].astype(np.int64)
@@ -77,7 +85,7 @@ def new_cases_rate_compared_yesterday_date():
     if len(yesterday_df.values) is not 0:
         two_dates_before_value = two_dates_before_df.values[0]
 
-    res = general.percentage_difference_calculator(old_value=yesterday_value, new_value=two_dates_before_value)
+    res = General.percentage_difference_calculator(old_value=yesterday_value, new_value=two_dates_before_value)
     if res:
         return res
     else:
