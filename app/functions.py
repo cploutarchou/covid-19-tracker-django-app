@@ -55,12 +55,12 @@ class Dates:
 
     @staticmethod
     def get_yesterday_date() -> time.strftime:
-        yesterday = Dates.query_date(3)
+        yesterday = Dates.query_date(2)
         yesterday = yesterday.strftime('%Y-%m-%d')
         return yesterday
 
     @staticmethod
     def get_two_dates_before() -> time.strftime:
-        res = Dates.query_date(4)
+        res = Dates.query_date(3)
         res = res.strftime('%Y-%m-%d')
         return res
