@@ -7,7 +7,7 @@ from covid_stats.data import get_daily_data
 from django_plotly_dash import DjangoDash
 
 register = template.Library()
-app = DjangoDash('SimpleExample')
+app = DjangoDash('DailyGrowth')
 
 df = get_daily_data()
 df['id'] = df.index
