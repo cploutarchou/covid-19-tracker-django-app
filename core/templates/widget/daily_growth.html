@@ -1,4 +1,4 @@
-{%load plotly_dash%}
+{% load plotly_dash %}
 <div class="container-fluid">
     <div class="row">
 
@@ -12,12 +12,12 @@
                 </div>
                 <!-- Card Body -->
                 <div class="card-body" style="height: 500px;">
-<div id="plotly_dash_area">
-                           {%plotly_app name="SimpleExample"%}
+                    <div id="plotly_dash_area">
+                        {% plotly_app name="DailyGrowth" %}
 
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 </div>
