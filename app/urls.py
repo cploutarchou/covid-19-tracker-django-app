@@ -3,7 +3,7 @@ from django.urls import path, include
 from app import views
 
 from django.contrib import admin
-from django.conf.urls import url,re_path
+from django.conf.urls import url, re_path
 from django.urls import path, include
 
 from django.views.generic import TemplateView
