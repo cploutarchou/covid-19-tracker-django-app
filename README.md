@@ -1,2 +1,3 @@
 # Work-in-Progress ....................................
 COVID-19 Tracker Dashboard for Cyprus.
+![beta-version](https://github.com/cploutarchou/covid-19-tracker-django-app/blob/master/assets/covid-dash-index.jpg?raw=true)

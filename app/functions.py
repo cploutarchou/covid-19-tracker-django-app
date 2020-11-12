@@ -64,3 +64,9 @@ class Dates:
         res = Dates.query_date(3)
         res = res.strftime('%Y-%m-%d')
         return res
+
+    @staticmethod
+    def get_today_date() -> time.strftime:
+        today = datetime.date.today()
+        today = today.strftime("%d/%m/%Y")
+        return today
