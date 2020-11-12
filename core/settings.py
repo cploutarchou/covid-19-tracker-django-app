@@ -26,7 +26,7 @@ INSTALLED_APPS = [
     'bootstrap4',
     'django_plotly_dash',
     'widget_tweaks',
-    ]
+]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -36,6 +36,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
 ]
 
 ROOT_URLCONF = 'core.urls'
@@ -45,7 +46,6 @@ LOGOUT_REDIRECT_URL = "home"
 ADMINS = (
     ('christos', 'cploutarchou@gmail.com'),
 )
-
 
 PLOTLY_COMPONENTS = [
     'dash_core_components',
@@ -65,7 +65,6 @@ STATICFILES_FINDERS = [
 ]
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
 
 TEMPLATES = [
     {
@@ -88,7 +87,6 @@ TEMPLATES = [
 
     },
 ]
-
 
 DATABASES = {
     'default': {
@@ -137,4 +135,3 @@ X_FRAME_OPTIONS = 'SAMEORIGIN'
 # the site admins on every HTTP 500 error when DEBUG=False.
 # See http://docs.djangoproject.com/en/dev/topics/logging for
 # more details on how to customize your logging configuration.
-
