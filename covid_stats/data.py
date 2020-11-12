@@ -94,3 +94,5 @@ def new_cases_rate_compared_yesterday_date():
 
 def get_current_month_data():
     pass
+
+
