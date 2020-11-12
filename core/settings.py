@@ -23,12 +23,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'app',
-    'channels',
     'bootstrap4',
     'django_plotly_dash',
-    'dpd_static_support',
     'widget_tweaks',
-    ]
+]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -38,6 +36,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
 ]
 
 ROOT_URLCONF = 'core.urls'
@@ -47,9 +46,6 @@ LOGOUT_REDIRECT_URL = "home"
 ADMINS = (
     ('christos', 'cploutarchou@gmail.com'),
 )
-
-# # Adding ASGI Application
-ASGI_APPLICATION = "core.routing.application"
 
 PLOTLY_COMPONENTS = [
     'dash_core_components',
@@ -69,7 +65,6 @@ STATICFILES_FINDERS = [
 ]
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
 
 TEMPLATES = [
     {
@@ -92,8 +87,6 @@ TEMPLATES = [
 
     },
 ]
-
-WSGI_APPLICATION = 'core.wsgi.application'
 
 DATABASES = {
     'default': {
@@ -142,36 +135,3 @@ X_FRAME_OPTIONS = 'SAMEORIGIN'
 # the site admins on every HTTP 500 error when DEBUG=False.
 # See http://docs.djangoproject.com/en/dev/topics/logging for
 # more details on how to customize your logging configuration.
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'filters': {
-        'require_debug_false': {
-            '()': 'django.utils.log.RequireDebugFalse'
-        }
-    },
-    'handlers': {
-        'mail_admins': {
-            'level': 'ERROR',
-            'filters': ['require_debug_false'],
-            'class': 'django.utils.log.AdminEmailHandler'
-        }
-    },
-    'loggers': {
-        'django.request': {
-            'handlers': ['mail_admins'],
-            'level': 'ERROR',
-            'propagate': True,
-        },
-    }
-}
-
-
-CHANNEL_LAYERS = {
-    'default': {
-        'BACKEND': 'channels_redis.core.RedisChannelLayer',
-        'CONFIG': {
-            'hosts': [('127.0.0.1', 6379), ],
-        },
-    },
-}
