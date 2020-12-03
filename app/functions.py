@@ -56,7 +56,8 @@ class Dates:
     @staticmethod
     def get_yesterday_date() -> time.strftime:
         yesterday = Dates.query_date(2)
-        yesterday = yesterday.strftime('%Y-%m-%d')
+        yesterday = yesterday.strftime('%d/%m/%Y')
+
         return yesterday
 
     @staticmethod
@@ -68,5 +69,5 @@ class Dates:
     @staticmethod
     def get_today_date() -> time.strftime:
         today = datetime.date.today()
-        today = today.strftime("%d/%m/%Y")
+        today = today.strftime('%d/%m/%Y')
         return today
