@@ -24,10 +24,9 @@ class RedisClient:
     def set_key(self, key: str = None, data: dict = None, ttl: int = None):
         try:
             if self.get(redis_key=key) is None:
-                self.client.set(name=key, value=data, keepttl=ttl)
-                self.client.expire(name=key, time=int(ttl))
-                self.client.save()
-                return True
+                self.client.set(name=key, value=data, ex=int(ttl))
+                res = self.client.save()
+                return res
             else:
                 print(f"Redis key {key} already exists")
         except Exception as exp:

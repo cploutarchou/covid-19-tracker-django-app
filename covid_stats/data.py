@@ -8,20 +8,22 @@ from app.functions import GeneralFunctions as General, Dates
 
 redis = RedisClient(1)
 client = redis.client
-data_sources_dir = os.path.dirname(os.path.realpath('__file__'))
 data_sources = dict(
-    daily_report_url=os.path.join(data_sources_dir, 'data-sources/daily_report_data.csv'),
+    daily_report_url="https://raw.githubusercontent.com/cploutarchou/covid-19-tracker-django-app/master/data-sources" +
+                     "/daily_report_data.csv",
 )
 
 
 def save_daily_data_to_redis():
+    key = "daily_stats"
     url = data_sources['daily_report_url']
     df = pd.read_csv(filepath_or_buffer=url, header='infer')
     df.index = [x for x in range(1, len(df.values) + 1)]
     df.index.name = 'id'
     df.fillna(0)
     data = df.to_json()
-    redis.set_key(key="daily_stats", data=data, ttl=None)
+    res = redis.set_key(key=key, data=data, ttl=86400)
+    return res
 
 
 def get_daily_data():
@@ -109,4 +111,4 @@ def get_current_month_data():
     pass
 
 
-redis.disconnect(1)
+save_daily_data_to_redis()
