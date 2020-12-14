@@ -2,7 +2,7 @@ import json
 import redis
 from datetime import timedelta, datetime
 
-from app.config import config
+from config import config
 
 start_time = datetime.now()
 
