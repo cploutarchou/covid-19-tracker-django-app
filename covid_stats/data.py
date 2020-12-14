@@ -112,3 +112,4 @@ def get_current_month_data():
 
 
 save_daily_data_to_redis()
+redis.disconnect(1)

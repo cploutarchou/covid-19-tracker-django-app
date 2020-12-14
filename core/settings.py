@@ -1,5 +1,5 @@
 import os
-
+import config.config as conf
 from decouple import config
 from django.contrib import staticfiles
 from unipath import Path
@@ -130,14 +130,19 @@ STATICFILES_DIRS = (
 )
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 
+
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://0.0.0.0:6379",
+        "LOCATION": f"redis://{conf.redis_db_host}:{conf.redis_db_port}",
         "OPTIONS": {
-            "CLIENT_CLASS": "django_redis.client.DefaultClient",
-        }
+            "CLIENT_CLASS": "django_redis.client.DefaultClient"
+        },
+        "KEY_PREFIX": "views_key_"
     }
 }
+
+CACHE_TTL = 60 * 15
+
 SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 SESSION_CACHE_ALIAS = "default"
