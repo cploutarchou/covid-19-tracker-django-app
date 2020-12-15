@@ -28,3 +28,9 @@ jobs:
     - name: Run Tests
       run: |
         python manage.py test
+services:
+      composition:
+        redis:
+          image: redis:latest
+          ports:
+            - 6379
