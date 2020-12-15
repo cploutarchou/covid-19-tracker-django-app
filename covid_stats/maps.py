@@ -22,6 +22,8 @@ def cyprus_map():
         fig.update_layout(
             mapbox_style='carto-positron',
             paper_bgcolor='rgba(0,0,0,0)',
+
+
             mapbox_zoom=2.75,
             mapbox_center={'lat': 37.0902, 'lon': -95.7129},
             margin=dict(t=0, l=0, r=0, b=0)

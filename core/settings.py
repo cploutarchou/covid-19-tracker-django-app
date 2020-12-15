@@ -130,7 +130,6 @@ STATICFILES_DIRS = (
 )
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 
-
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
