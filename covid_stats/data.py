@@ -1,10 +1,9 @@
 import numpy as np
 import pandas as pd
-import os
-
+from django.core.cache.backends.base import DEFAULT_TIMEOUT
 from app.redis.redis_client import RedisClient
-
 from app.functions import GeneralFunctions as General, Dates
+from core import settings
 
 redis = RedisClient(1)
 client = redis.client
@@ -12,6 +11,8 @@ data_sources = dict(
     daily_report_url="https://raw.githubusercontent.com/cploutarchou/covid-19-tracker-django-app/master/data-sources" +
                      "/daily_report_data.csv",
 )
+
+CACHE_TTL = getattr(settings, 'CACHE_TTL', DEFAULT_TIMEOUT)
 
 
 def save_daily_data_to_redis():
@@ -22,11 +23,14 @@ def save_daily_data_to_redis():
     df.index.name = 'id'
     df.fillna(0)
     data = df.to_json()
-    res = redis.set_key(key=key, data=data, ttl=86400)
+    res = redis.set_key(key=key, data=data, ttl=CACHE_TTL)
     return res
 
 
 def get_daily_data():
+    if client.get("daily_stats") is None:
+        save_daily_data_to_redis()
+
     res = client.get("daily_stats")
     df = pd.read_json(res)
     df = df.fillna(0)
