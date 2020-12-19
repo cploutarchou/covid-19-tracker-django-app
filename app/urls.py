@@ -24,5 +24,6 @@ urlpatterns = [
 
     # The home page
     path('', views.index, name='home'),
+    path('rabid_tests_stats', views.rabid_tests_stats, name='rabid_tests_stats'),
     path('django_plotly_dash/', include('django_plotly_dash.urls')),
 ]

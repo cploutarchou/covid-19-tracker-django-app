@@ -30,7 +30,8 @@ def index(request):
             "daily_test": {"title": "Today Tests", "test": daily_tests},
             "daily_deaths": {"title": "Today Deaths", "deaths": daily_deaths},
             "rate": {"title": "Today Rate", "rate": rate},
-            "dashboard_text": "Daily Statistics"
+            "daily_statistics": "Daily Statistics",
+            "rabid_tests_stats": "Rabid tests Statistics",
         }
 
         return render(request, template_name="index.html", context=index_page_context)
@@ -42,6 +43,11 @@ def index(request):
         data.save_daily_data_to_redis()
         print("Redis key daily_stats expired.Start update key")
         return render_view()
+
+
+def rabid_tests_stats(request):
+    index_page_context = {}
+    return render(request, template_name="pages/rabid_test_stats.html", context=index_page_context)
 
 
 def pages(request):
