@@ -5,7 +5,7 @@ whitenoise~=5.2.0
 pandas~=1.1.5
 plotly~=4.14.1
 arcgis2geojson~=2.0.0
-numpy==1.19.3
+numpy==1.22.0
 dash~=1.18.1
 django_plotly_dash~=1.5.0
 dash-renderer~=1.8.3
